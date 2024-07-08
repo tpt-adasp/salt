@@ -1,0 +1,239 @@
+/* Reset default browser styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Define CSS variables for reusability */
+:root {
+  --font-family: 'Lato', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --line-height: 1.6;
+  --background-color: #f9f9f9;
+  --container-bg-color: #fff;
+  --border-color: #ddd;
+  --border-radius: 12px; /* Increased border-radius for a softer look */
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Slightly increased shadow for better depth */
+  --text-color: #333;
+  --text-hover-color: #007BFF; /* Blue hover color for better interactivity */
+  --nested-text-color: #555;
+  --nested-text-hover-color: #0096FF; /* Slightly brighter blue for nested items */
+  --container-padding: 20px;
+  --nested-list-padding: 20px;
+  --nested-list-margin: 12px;
+  --item-margin-bottom: 12px;
+  --font-size-base: 16px;
+  --font-size-summary: 18px;
+  --font-size-title: 36px; /* Font size for the title */
+  --font-size-subtitle: 18px; /* Font size for the subtitle */
+}
+
+/* Fonts and general styles */
+body {
+  font-family: 'Lato', sans-serif;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  color: #333;
+  font-size: 16px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.image_container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5px;
+}
+
+/* Header styles */
+.header {
+  background-color: #007BFF;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 5em;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  font-size: 1.5em;
+  font-style: italic;
+}
+
+/* Section styles */
+.section {
+  padding: 20px 0;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 40px;
+}
+
+.section-title .subtitle {
+  text-align: center;
+  font-size: var(--font-size-subtitle);
+  font-style: italic;
+  color: #777; /* Example color for the subtitle */
+}
+
+
+/* Image Gallery styles */
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.image-item {
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.image-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px 12px 0 0;
+  transition: transform 0.3s ease;
+}
+
+.image-item:hover {
+  transform: translateY(-5px);
+}
+
+.image-item figcaption {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* Useful Links styles */
+.useful-links {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.useful-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.useful-links ul li {
+  margin-bottom: 10px;
+}
+
+.useful-links ul li a {
+  color: #007BFF;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+.useful-links ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Footer styles */
+.footer {
+  background-color: #007BFF;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 40px;
+}
+
+.scaled-image {
+  max-width: 100%; /* Scale down to fit container width */
+  height: auto; /* Maintain aspect ratio */
+  cursor: pointer; /* Optional: Add pointer cursor for interaction */
+}
+
+.image-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px; /* Adjust as needed */
+}
+
+.image-item {
+  width: calc(33.33% - 10px); /* Adjust based on number of images per row */
+  margin-bottom: 20px;
+}
+
+.wide-image {
+  width: 100%; /* Ensure wide image spans full width */
+  max-width: 100%; /* Ensure wide image doesn't exceed its container */
+  margin-top: 20px; /* Add margin to create space between rows */
+}
+
+
+
+/* data-list attempt
+/* Container for the data list */
+.data-list {
+  background-color: var(--container-bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: var(--container-padding);
+  box-shadow: var(--box-shadow);
+  transition: box-shadow 0.5s ease;
+  max-width: 800px;
+  margin: 0 auto 20px; /* Center align and add bottom margin */
+}
+
+.data-list:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+/* Styles for list items */
+.dict-item {
+  margin-bottom: var(--item-margin-bottom);
+  list-style: none;
+}
+
+/* Details and summary styles */
+.dict-item > details > summary {
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--text-color);
+  font-size: var(--font-size-summary);
+  transition: color 0.3s ease, font-size 0.3s ease;
+}
+
+.dict-item > details > summary:hover {
+  color: var(--text-hover-color);
+  font-size: calc(var(--font-size-summary) + 2px); /* Slightly increase font size on hover */
+}
+
+/* Nested lists indentation */
+.dict-item > details > ul {
+  padding-left: var(--nested-list-padding);
+  margin-top: var(--nested-list-margin);
+}
+
+/* Different levels of nesting */
+.dict-item > details > ul > .dict-item > details > summary {
+  color: var(--nested-text-color);
+  font-weight: normal;
+  transition: color 0.3s ease, font-size 0.3s ease;
+}
+
+.dict-item > details > ul > .dict-item > details > summary:hover {
+  color: var(--nested-text-hover-color);
+  font-size: calc(var(--font-size-base) + 2px); /* Slightly increase font size on hover */
+}
