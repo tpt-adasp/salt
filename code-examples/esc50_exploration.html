@@ -15202,7 +15202,17 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </style>
 <!-- End of mermaid configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="ESC-50-Exploration">ESC-50 Exploration<a class="anchor-link" href="#ESC-50-Exploration">¶</a></h1><p>In this notebook, we explore the ESC-50 dataset through the scope of SALT. First, we plot the hierarchical tree graphs of standardized labels for the ESC-50 nodes. After, we explore the 1-1 mapping between the ESC-50 default labels and the standardized SALT labels.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -15294,7 +15304,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Get the default ESC-50 labels</span>
@@ -15313,59 +15323,160 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>['airplane',
- 'car_horn',
- 'engine',
- 'helicopter',
- 'train',
- 'chainsaw',
- 'fireworks',
- 'glass_breaking',
- 'hand_saw',
- 'clock_alarm',
- 'siren',
- 'clapping',
- 'coughing',
- 'breathing',
- 'snoring',
- 'sneezing',
- 'footsteps',
- 'brushing_teeth',
- 'crying_baby',
- 'drinking_sipping',
- 'laughing',
- 'cat meowing',
- 'chirping_birds',
- 'cow',
- 'crickets',
- 'crow',
- 'dog',
- 'frog',
- 'hen',
- 'insects',
- 'pig',
- 'rooster',
- 'sheep',
- 'thunderstorm',
- 'wind',
- 'pouring_water',
- 'rain',
- 'sea_waves',
- 'water_drops',
- 'toilet_flush',
- 'church_bells',
- 'vacuum_cleaner',
- 'mouse_click',
- 'can_opening',
- 'washing_machine',
- 'door_wood_creaks',
- 'door_wood_knock',
- 'keyboard_typing',
- 'clock_tick',
- 'crackling_fire']</pre>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>ESC-50 label: airplane
+Standard label: airplane
+
+ESC-50 label: car_horn
+Standard label: car_horn
+
+ESC-50 label: engine
+Standard label: engine
+
+ESC-50 label: helicopter
+Standard label: helicopter
+
+ESC-50 label: train
+Standard label: train
+
+ESC-50 label: chainsaw
+Standard label: chainsaw
+
+ESC-50 label: fireworks
+Standard label: fireworks
+
+ESC-50 label: glass_breaking
+Standard label: glass_break
+
+ESC-50 label: hand_saw
+Standard label: hand_saw
+
+ESC-50 label: clock_alarm
+Standard label: alarm_clock_ringing
+
+ESC-50 label: siren
+Standard label: siren_ringing
+
+ESC-50 label: clapping
+Standard label: clapping
+
+ESC-50 label: coughing
+Standard label: coughing
+
+ESC-50 label: breathing
+Standard label: breathing
+
+ESC-50 label: snoring
+Standard label: snoring
+
+ESC-50 label: sneezing
+Standard label: sneezing
+
+ESC-50 label: footsteps
+Standard label: footsteps
+
+ESC-50 label: brushing_teeth
+Standard label: brushing_teeth
+
+ESC-50 label: crying_baby
+Standard label: baby_crying
+
+ESC-50 label: drinking_sipping
+Standard label: drinking_or_sipping
+
+ESC-50 label: laughing
+Standard label: laughing
+
+ESC-50 label: cat meowing
+Standard label: cat_meowing
+
+ESC-50 label: chirping_birds
+Standard label: bird_chirping
+
+ESC-50 label: cow
+Standard label: cow
+
+ESC-50 label: crickets
+Standard label: cricket
+
+ESC-50 label: crow
+Standard label: crow
+
+ESC-50 label: dog
+Standard label: dog
+
+ESC-50 label: frog
+Standard label: frog
+
+ESC-50 label: hen
+Standard label: hen
+
+ESC-50 label: insects
+Standard label: insect
+
+ESC-50 label: pig
+Standard label: pig
+
+ESC-50 label: rooster
+Standard label: chicken_or_rooster
+
+ESC-50 label: sheep
+Standard label: sheep
+
+ESC-50 label: thunderstorm
+Standard label: thunderstorm
+
+ESC-50 label: wind
+Standard label: wind_blowing
+
+ESC-50 label: pouring_water
+Standard label: pouring_water
+
+ESC-50 label: rain
+Standard label: rain
+
+ESC-50 label: sea_waves
+Standard label: waves
+
+ESC-50 label: water_drops
+Standard label: water_drop
+
+ESC-50 label: toilet_flush
+Standard label: toilet_flush
+
+ESC-50 label: church_bells
+Standard label: church_bell
+
+ESC-50 label: vacuum_cleaner
+Standard label: vacuum_cleaner
+
+ESC-50 label: mouse_click
+Standard label: mouse_click
+
+ESC-50 label: can_opening
+Standard label: can_opening
+
+ESC-50 label: washing_machine
+Standard label: washing_machine
+
+ESC-50 label: door_wood_creaks
+Standard label: door_wood_creak
+
+ESC-50 label: door_wood_knock
+Standard label: door_knock
+
+ESC-50 label: keyboard_typing
+Standard label: keyboard_typing
+
+ESC-50 label: clock_tick
+Standard label: clock_tick
+
+ESC-50 label: crackling_fire
+Standard label: fire
+
+</pre>
 </div>
 </div>
 </div>
