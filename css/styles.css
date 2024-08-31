@@ -237,3 +237,47 @@ body {
   color: var(--nested-text-hover-color);
   font-size: calc(var(--font-size-base) + 2px); /* Slightly increase font size on hover */
 }
+
+/* Dataset grid styles */
+.dataset-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Reduce min width */
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.dataset-item {
+  background-color: var(--container-bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 8px; /* Reduced padding */
+  text-align: center;
+  color: var(--text-color);
+  box-shadow: var(--box-shadow);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  text-decoration: none; /* Remove underline from links */
+  display: flex; /* Flexbox to center text */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Add ellipsis (...) for overflowing text */
+  white-space: nowrap; /* Prevent text wrapping */
+  font-size: 0.9em; /* Slightly reduce default font size */
+}
+
+.dataset-item:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-3px);
+}
+
+/* Smaller font size for long names */
+.dataset-item.long-name {
+  font-size: 0.75em; /* Further reduce font size */
+}
+
+/* Wrap long text in multiple lines */
+.dataset-item.wrap-text {
+  white-space: normal; /* Allow wrapping */
+  word-break: break-word; /* Break words if necessary */
+  font-size: 0.8em; /* Further reduce font size for wrapping */
+}
