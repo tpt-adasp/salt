@@ -247,27 +247,19 @@ body {
 }
 
 .dataset-item {
-  background-color: var(--container-bg-color);
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
-  padding: 8px; /* Reduced padding */
+  background-color: #fff; /* White background for the button */
+  color: #000; /* Black text color by default */
+  padding: 10px 20px;
   text-align: center;
-  color: var(--text-color);
-  box-shadow: var(--box-shadow);
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  text-decoration: none; /* Remove underline from links */
-  display: flex; /* Flexbox to center text */
-  align-items: center; /* Center vertically */
-  justify-content: center; /* Center horizontally */
-  overflow: hidden; /* Hide overflow */
-  text-overflow: ellipsis; /* Add ellipsis (...) for overflowing text */
-  white-space: nowrap; /* Prevent text wrapping */
-  font-size: 0.9em; /* Slightly reduce default font size */
+  border-radius: 8px;
+  border: 2px solid #ddd; /* Light border to define the button */
+  text-decoration: none;
+  transition: color 0.3s ease, border-color 0.3s ease; /* Smooth transition for text and border color */
 }
 
 .dataset-item:hover {
-  background-color: #f0f0f0;
-  transform: translateY(-3px);
+  color: #007BFF; /* Blue text on hover */
+  border-color: #007BFF; /* Change border color to blue on hover */
 }
 
 /* Smaller font size for long names */
@@ -283,9 +275,9 @@ body {
 }
 
 .note {
-  margin-top: 30px;
+  margin-top: 1px;
   text-align: center;
-  font-size: 1em;
+  font-size: 1.2em;
   color: #555; /* Adjust color to match your theme */
   font-style: italic; /* Italicize the note */
 }
