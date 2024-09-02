@@ -281,3 +281,11 @@ body {
   word-break: break-word; /* Break words if necessary */
   font-size: 0.8em; /* Further reduce font size for wrapping */
 }
+
+.note {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 1em;
+  color: #555; /* Adjust color to match your theme */
+  font-style: italic; /* Italicize the note */
+}
