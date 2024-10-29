@@ -1,0 +1,2568 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>SALT: Standardized Audio event Label Taxonomy</title>
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="styles.css">
+      <style>
+         /* CSS for modal */
+         .modal {
+         display: none;
+         position: fixed;
+         z-index: 9999;
+         padding-top: 50px; /* Space from top */
+         left: 0;
+         top: 0;
+         width: 100%;
+         height: 100%;
+         overflow: auto;
+         background-color: rgba(0,0,0,0.9); /* Black background with opacity */
+         }
+         .modal-content {
+         margin: auto;
+         display: block;
+         max-width: 90%;
+         max-height: 90%;
+         }
+         .modal-content img {
+         width: auto;
+         max-width: 100%;
+         height: auto;
+         max-height: 100%;
+         display: block;
+         margin: auto;
+         }
+         .modal-caption {
+         color: #fff;
+         text-align: center;
+         margin-top: 10px;
+         font-size: 14px;
+         }
+         .close {
+         color: #fff;
+         position: absolute;
+         top: 10px;
+         right: 25px;
+         font-size: 35px;
+         font-weight: bold;
+         transition: 0.3s;
+         cursor: pointer;
+         }
+         .close:hover,
+         .close:focus {
+         color: #999;
+         text-decoration: none;
+         }
+      </style>
+   </head>
+   <body>
+      <header class="header">
+         <div class="container">
+            <h1>SALT</h1>
+            <div class="subtitle">Standardized Audio event Label Taxonomy</div>
+         </div>
+      </header>
+      <main>
+         <section class="section">
+            <div class="image_container">
+               <h2 class="section-title"></h2>
+                  <span class="subtitle">Building upon the hierarchical structure of AudioSet's ontology, SALT extends and standardizes labels across 24 publicly available environmental sound datasets, allowing the mapping of class labels from diverse datasets to a unified system.</span>
+               <div class="image-gallery">
+                  <!-- Existing Images in a Row -->
+                  <div class="image-row">
+                     <figure class="image-item">
+                        <img src="../assets/imgs/statistics.png" alt="Description of the third image" class="scaled-image" onclick="openModal(this)">
+                        <figcaption>The benefit of label aggregation in selected standardized labels.</figcaption>
+                     </figure>
+                     <figure class="image-item">
+                        <img src="../assets/imgs/dataset_label_mapping.png" alt="Description of the second image" class="scaled-image" onclick="openModal(this)">
+                        <figcaption>Dataset mapping of the standard label "car_horn"</figcaption>
+                     </figure>
+                     <figure class="image-item">
+                        <img src="../assets/imgs/pie_statistics.png" alt="Description of the first image" class="scaled-image" onclick="openModal(this)">
+                        <figcaption>Contribution of dataset's original (default) labels to SALT after the standardization process.</figcaption>
+                     </figure>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <!-- Wide Image Below -->
+         <section class="section">
+            <div class="image_container">
+               <div class="image-gallery">
+                  <div class="image-row">
+                     <figure class="image-item wide-image">
+                        <img src="../assets/imgs/dcase_defintions.png" alt="Description of the wide image" class="scaled-image" onclick="openModal(this)">
+                        <figcaption>Mapping procedure in SALT</figcaption>
+                     </figure>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <section id="section2">
+            <h2 class="section-title">Explore SALT</h2>
+            <div class="data-list">
+            <ul style="font-size: 1.1em;">
+               <li class="dict-item" style="margin-bottom: 10px;">
+                  <details>
+                     <summary>Human sounds</summary>
+                     <ul>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>human_group_actions</summary>
+                              <ul>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">applause</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">booing</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>crowd</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">chatter</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">large_crowd</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">people_cheering</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">speech_babbling</li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>human_movement</summary>
+                              <ul>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>footsteps</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">running</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">tap_dancing</li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>walking</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">shuffle</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">stomp_stamp</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>human_non-speech_sounds</summary>
+                              <ul>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>Heart_sounds_heartbeat</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">heart_murmur</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>breathing</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">gasp</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">pant</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">sighing</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">snoring</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">snorting</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">wheeze</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">child_babbling</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">children_playing</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">coughing</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>crying</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">baby_crying</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">whimpering</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>digestive</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">drinking</li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>eating</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">biting</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">burping</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">chewing</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">farting</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">gargling</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">hiccup</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">stomach_rumble</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">drinking_or_sipping</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>hands</summary>
+                                       <ul>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>clapping</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">applause</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">finger_snapping</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">humming</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>laughing</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">baby_laughing</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">belly_laugh</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">chuckling_and_chortling</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">giggling</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">snicker</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">moaning</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>screaming</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">female_screaming</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">male_screaming</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>shouting</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">battle_cry</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">bellow</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">children_shouting</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">whoop</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">yelling</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">sneezing</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">sniffing</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">throat_cleaning</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">whispering</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">whistling</li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>human_voice</summary>
+                              <ul>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>child_voice</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">child_babbling</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">child_speaking</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">children_playing</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">children_shouting</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>crying</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">baby_crying</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">whimpering</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">female_screaming</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">groaning</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">grunting</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">humming</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>laughing</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">baby_laughing</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">belly_laugh</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">chuckling_and_chortling</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">giggling</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">snicker</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">male_screaming</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">moaning</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>shouting</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">battle_cry</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">bellow</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">children_shouting</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">whoop</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">yelling</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">sighing</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>singing</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">child_singing</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">female_singing</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">male_singing</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">rapping</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">sympathetic_singing</li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>vocal_music</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">a_capella</li>
+                                                   <li class="dict-item" style="margin-bottom: 10px;">
+                                                      <details>
+                                                         <summary>chant</summary>
+                                                         <ul>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">mantra</li>
+                                                         </ul>
+                                                      </details>
+                                                   </li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">choir_singing</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">yodeling</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>talking</summary>
+                                       <ul>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>speech</summary>
+                                                <ul>
+                                                   <li class="dict-item" style="margin-bottom: 10px;">
+                                                      <details>
+                                                         <summary>announcement</summary>
+                                                         <ul>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">announcement_jingle</li>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">announcement_speech</li>
+                                                         </ul>
+                                                      </details>
+                                                   </li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">chatter</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">child_speaking</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">conversation</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">female_speaking</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">male_speaking</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">monologue</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">speech_synthesizer</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">whispering</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">yawning</li>
+                              </ul>
+                           </details>
+                        </li>
+                     </ul>
+                  </details>
+               </li>
+            </ul>
+            <ul style="font-size: 1.1em;">
+               <li class="dict-item" style="margin-bottom: 10px;">
+                  <details>
+                     <summary>Animal</summary>
+                     <ul>
+                        <li style="margin-bottom: 10px; margin-left: 19px;">animal_growling</li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>domestic_animal</summary>
+                              <ul>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>cat</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">cat_meowing</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">cat_purring</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">caterwaul</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>dog</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">dog_barking</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">dog_bowing</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">dog_howling</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">dog_pant</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">dog_whimpering</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">dog_yipping</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>farm_animal</summary>
+                              <ul>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>cattle_or_bovinae</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">cow_moo</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">yak</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">cow</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">donkey</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>fowl_animal</summary>
+                                       <ul>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>chicken_or_rooster</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">rooster_cluck</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">rooster_crowing</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>duck</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">duck_quack</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>goose</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">goose_honking</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>turkey</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">turkey_gobble</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>goat</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">goat_or_sheep_bleat</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">hen</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>horse</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">clip-clop</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">horse_nicker</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">horse_snort</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">neigh_whinny</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>pig</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">pig_oink</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>sheep</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">goat_or_sheep_bleat</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>wild_animal</summary>
+                              <ul>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>bird</summary>
+                                       <ul>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>bird_vocalization_call_or_song</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">bird_chirping</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">bird_squawk</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">bird_wings_flap</li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>crow</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">crow_caw</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">gull_seagull</li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>owl</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">owl_hoot</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>pigeon_dove</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">pigeon_cooing</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>canidae_dogs_wolves</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">dog_howling</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">wolf_whistling</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>frog</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">frog_croak</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>insect</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">cricket</li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>insect_buzz</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">bee_or_wasp</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">fly_housefly</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">insect_chirping</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">mosquito</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>lions_or_tigers</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">lions_or_tigers_roaring</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">monkey</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>rodents_rats_mice</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">chipmunk</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">mouse</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">patter</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">snake</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">whale_vocalization</li>
+                              </ul>
+                           </details>
+                        </li>
+                     </ul>
+                  </details>
+               </li>
+            </ul>
+            <ul style="font-size: 1.1em;">
+               <li class="dict-item" style="margin-bottom: 10px;">
+                  <details>
+                     <summary>Music</summary>
+                     <ul>
+                        <li style="margin-bottom: 10px; margin-left: 19px;">mobile_music</li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>music_genre</summary>
+                              <ul>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>aftrica_music</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">afrobeat</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">kwaito_music</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>ambient_music</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">drone_music</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>asia_music</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">carnatic_music</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">music_of_Bollywood</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">blues_music</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">children_music</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>christian_music</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">gospel_music</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>classical_music</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">opera</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>country_music</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">bluegrass_music</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">swing_music</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">disco_music</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>electronic_music</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">UK_garage</li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>drum_and_bass</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">oldschool_jungle</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">dubstep</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">electro</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">electronic_dance_music</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">electronica</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">house_music</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">noise_music</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">techno</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">trance_music</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">folk_music</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">funk_music</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>hip_hop_music</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">beatboxing_music</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">grime_music</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">trap_music</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">independent_music</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">jazz_music</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>latin_america_music</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">cumbia_music</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">flamenco_music</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">funk_carioca_music</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">kuduro_music</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">salsa_music</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">soca_music</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">middle_eastern_music</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">new-age_music</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">pop_music</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>reggae_music</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">dub_music</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>rock_music</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">grunge</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">heavy_metal</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">progressive_rock</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">psychedelic_rock</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">punk_rock</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">rock_and_roll</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">ska_music</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">soul_music</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">traditional_music</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>vocal_music</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">a_capella</li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>chant</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">mantra</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">choir_singing</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>music_mood</summary>
+                              <ul>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">angry_music</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">exciting_music</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">funny_music</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">happy_music</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">sad_music</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">scary_music</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">tender_music</li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>music_role</summary>
+                              <ul>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">background_music</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">birthday_music</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">christmas_music</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">dance_music</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">jingle_music</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">lullaby</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">soundtrack_music</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">theme_music</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">video_game_music</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">wedding_music</li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>musical_concepts</summary>
+                              <ul>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">Melody</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">Song</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">bassline</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>beat</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">drum_beat</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">chord</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">drone</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">harmony</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">loop</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">musical_note</li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>musical_instrument</summary>
+                              <ul>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">accordion</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">bagpipes</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>bowed_string_instrument</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">cello</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">double_bass</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">string_section</li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>violin_fiddle</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">pizzicato</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>brass_instrument</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">bugle</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">cornet</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">french_horn</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">trombone</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">trumpet</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>chime</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">wind_chime</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">didgeridoo</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">harmonica</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">harp</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>keyboard_(musical)</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">harpsichord</li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>organ</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">electronic_organ</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">hammond_organ</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>piano</summary>
+                                                <ul>
+                                                   <li class="dict-item" style="margin-bottom: 10px;">
+                                                      <details>
+                                                         <summary>electric_piano</summary>
+                                                         <ul>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">clavinet</li>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">rhodes_piano</li>
+                                                         </ul>
+                                                      </details>
+                                                   </li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>synthesizer</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">mellotron</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">sampler</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">orchestra</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>percussion</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">cowbell</li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>cymbal</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">crash_cymbal</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">hi-hat</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>drum</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">bass_drum</li>
+                                                   <li class="dict-item" style="margin-bottom: 10px;">
+                                                      <details>
+                                                         <summary>snare_drum</summary>
+                                                         <ul>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">drum_roll</li>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">rimshot</li>
+                                                         </ul>
+                                                      </details>
+                                                   </li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">tabla</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">timpani</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>drum_kit</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">drum_machine</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">gong</li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>mallet_percussion</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">glockenspiel</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">marimba_and_xylophone</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">steelpan</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">vibraphone</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>rattle_(instrument)</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">maraca</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">tambourine</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">tubular_bells</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">wood_block</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>plucked_string_instrument</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">banjo</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">bass_guitar</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">mandolin</li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>playing_guitar</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">acoustic_guitar</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">electric_guitar</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">guitar_strumming</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">guitar_tapping</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">steel_guitar_or_slide_guitar</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">sitar</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">ukulele</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">zither</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">shofar</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">singing_bowl</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">theremin</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">vinyl_scratching</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>wind_or_woodwind_instrument</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">bassoon</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">clarinet</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">flute</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">oboe</li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>saxophone</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">alto_saxophone</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">soprano_saxophone</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li style="margin-bottom: 10px; margin-left: 19px;">ringtone</li>
+                        <li style="margin-bottom: 10px; margin-left: 19px;">stationary_music</li>
+                        <li style="margin-bottom: 10px; margin-left: 19px;">urban_music</li>
+                     </ul>
+                  </details>
+               </li>
+            </ul>
+            <ul style="font-size: 1.1em;">
+               <li class="dict-item" style="margin-bottom: 10px;">
+                  <details>
+                     <summary>Sound of things</summary>
+                     <ul>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>alarm_signal</summary>
+                              <ul>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">CO_detector</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">alarm_clock_ringing</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">bicycle_bell</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">buzzer_ringing</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">car_alarm_ringing</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>doorbell</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">ding-dong</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">error_signal</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>fire_alarm_ringing</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">smoke_alarm</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">foghorn_ringing</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>siren_ringing</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">civil_defense_siren</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">reverse_beeper</li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>vehicle_siren_ringing</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">ambulance_siren_ringing</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">fire_truck_siren_ringing</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">police_car_siren_ringing</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>telephone</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">dial_tone</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">phone_ringing</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">ringtone</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">telephone vibrating</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">telephone_busy_signal</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">telephone_dialing</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>vehicle_horn</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">air_horn_or_truck_horn</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">car_horn</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>whistle</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">kettle_whistle</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">steam_whistle</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li style="margin-bottom: 10px; margin-left: 19px;">audio_feedback</li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>bathroom_sounds</summary>
+                              <ul>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">bathtub_(filling_or_washing)</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>brushing_teeth</summary>
+                                       <ul>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>toothbrush</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">electric_toothbrush</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">shower</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">sink_(filling_or_washing)</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">toilet_flush</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">water_tap_or_faucet</li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>bell</summary>
+                              <ul>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">bicycle_bell</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">change_bell_ringing</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>chime</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">wind_chime</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">church_bell</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">cowbell</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>doorbell</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">ding-dong</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">jingle_bell</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">tuning_fork</li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li style="margin-bottom: 10px; margin-left: 19px;">chain</li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>domestic_sounds</summary>
+                              <ul>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">bathtub_(filling_or_washing)</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">beater</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">blender</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">broadband_noise</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>brushing_teeth</summary>
+                                       <ul>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>toothbrush</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">electric_toothbrush</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">can_opening</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">chopping_food</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">coin_dropping</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>cooking</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">frying</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">crockery_breaking_and_smashing</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">cupboard_open_or_close</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>cutlery_or_dishes</summary>
+                                       <ul>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>cutlery</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">knife</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>dishes_or_pots_or_pans</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">washing_dishes</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">dishwasher</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>door</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">door_knock</li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>door_opens_or_closes</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">door_slam</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">door_wood_creak</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">sliding_door</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>doorbell</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">ding-dong</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">drawer_open_or_close</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">duct_tape</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">electric_shaver</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">furniture_dragging</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">hair_dryer</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">hook_and_loop_fastener</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">kettle_whistle</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">keys_jangling</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">microwave_oven</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">mouse_click</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">object_fall</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">paper_rustling</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">radio</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">refrigerator</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">scissors</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">shower</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">shuffling_cards</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">sink_(filling_or_washing)</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">smoke_extractor</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">switch_on_or_off</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">television</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">toilet_flush</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>typing</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">keyboard_typing</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">typewriter</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">vacuum_cleaner</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>video_game/tv</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">video_game</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">washing_machine</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">window_opens_or_closes</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">writing</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">zipper_(clothing)</li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>engine</summary>
+                              <ul>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>engine_idling</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">bus_engine_idling</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">car_engine_idling</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">motorcycle_engine_idling</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">truck_engine_idling</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">engine_knocking</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">engine_starting</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>heavy_engine_(low_frequency)</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">bus_engine_accelerating</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">bus_engine_idling</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">truck_engine_accelerating</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">truck_engine_idling</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>light_engine_(high_frequency)</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">chainsaw</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">dental_drill</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">lawn_mower</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">sewing_machine</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>medium_engine_(mid_frequency)</summary>
+                                       <ul>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>motorcycle_engine</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">motorcycle_engine_accelerating</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">motorcycle_engine_idling</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>vehicle_engine</summary>
+                                       <ul>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>bus_engine</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">bus_compressor</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">bus_engine_accelerating</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">bus_engine_idling</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>car_engine</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">car_engine_accelerating</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">car_engine_idling</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">car_passing_by</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">race_car</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>engine_accelerating</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">bus_engine_accelerating</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">car_engine_accelerating</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">motorcycle_engine_accelerating</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">truck_engine_accelerating</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>motorcycle_engine</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">motorcycle_engine_accelerating</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">motorcycle_engine_idling</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>truck_engine</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">truck_compressor</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">truck_engine_accelerating</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">truck_engine_idling</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>vehicle_compressor</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">bus_compressor</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">truck_compressor</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>glass</summary>
+                              <ul>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">glass_break</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">glass_chink_or_clink</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">glass_jingling</li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>kitchen_sounds</summary>
+                              <ul>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">beater</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">chopping_food</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>cooking</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">frying</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">crockery_breaking_and_smashing</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>cutlery_or_dishes</summary>
+                                       <ul>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>cutlery</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">knife</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>dishes_or_pots_or_pans</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">washing_dishes</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">dishwasher</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">kettle_whistle</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">refrigerator</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">smoke_extractor</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">water_tap_or_faucet</li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>liquid</summary>
+                              <ul>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>hose_pump</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">pump_(liquid)</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">liquid_boiling</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">liquid_dripping</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>liquid_pouring</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">fill_(with_liquid)</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">gush</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">trickle_dribble</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>splashing</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">slosh</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">spray</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">squish</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">stir</li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li style="margin-bottom: 10px; margin-left: 19px;">lock</li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>machinery_impact</summary>
+                              <ul>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>drilling</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">jackhammer</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">rock_drill</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">hammering</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">hoe_ram</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">pile_driver</li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>mechanisms</summary>
+                              <ul>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>air_conditioner</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">air_conditioning</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>camera</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">single-lens_reflex_camera</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">cash_register_beeping</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>clock_tick</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">tick-tock</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">coffee_machine</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">gear</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">mechanical_fan</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">printer</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">ratchet_or_pawl</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">sewing_machine</li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>miscellaneous_sources</summary>
+                              <ul>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>arrow</summary>
+                                       <ul>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>thumb_or_thud</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">clunk</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">thunk</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">whoosh_swoosh_swish</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">duck_call_(hunting tool)</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">sonar</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>sound_equipment</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">electronic_tuner</li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>microphone</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">wind_noise_(microphone)</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>sound_effects_unit</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">chorus_effect</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">sweeping</li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>non-machinery_impact</summary>
+                              <ul>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">breaking</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">car_crash</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>explosion</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">boom</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">burst_or_pop</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">eruption</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">firecracker</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">fireworks</li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>gunshot</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">artillery_fire</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">cap_gun</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">fusillade</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">machine_gun</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">sonic_boom</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">glass_break</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>object_impact</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">object_banging</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">object_fall</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">object_rustling</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">object_snapping</li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>specific_impact_sounds</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">basketball_bounce</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>office_sounds</summary>
+                              <ul>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">duct_tape</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">keyboard_typing</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">keypress_tone</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">mechanical_fan</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">mouse_click</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">photocopier</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">printer</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">typewriter</li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li style="margin-bottom: 10px; margin-left: 19px;">shopping_cart</li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>tools</summary>
+                              <ul>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">filing_(rasp)</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">hammering</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">jackhammer</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>power_tool</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">dental_drill</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">pulleys</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">sanding</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>sawing</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">hand_saw</li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>powered_saw</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">chainsaw</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">large_rotating_saw</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">small/medium_rotating_saw</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>vehicle</summary>
+                              <ul>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>aircraft</summary>
+                                       <ul>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>aircraft_engine</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">jet_engine</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">propeller_airscrew</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">airplane</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">electric_rotor_drone</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">helicopter</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>heavy_engine_(low_frequency)</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">bus_engine_accelerating</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">bus_engine_idling</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">truck_engine_accelerating</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">truck_engine_idling</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">lawn_mower</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>non-motorized_land_vehicle</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">bicycle</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">cart</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">skateboard</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>rail_transport</summary>
+                                       <ul>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>metro</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">metro_approaching</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">metro_leaving</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">railroad_car_or_train_wagon</li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>train</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">electric_train</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">train_horn</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">train_wheels_squealing</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">train_whistle</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>road_vehicle</summary>
+                                       <ul>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>brakes_squeaking</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">bus_brake</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">car_brake</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">exhaust_brake</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">friction_brake</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">motorcycle_brake</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>car</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">car_alarm_ringing</li>
+                                                   <li class="dict-item" style="margin-bottom: 10px;">
+                                                      <details>
+                                                         <summary>car_engine</summary>
+                                                         <ul>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">car_engine_accelerating</li>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">car_engine_idling</li>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">car_passing_by</li>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">race_car</li>
+                                                         </ul>
+                                                      </details>
+                                                   </li>
+                                                   <li class="dict-item" style="margin-bottom: 10px;">
+                                                      <details>
+                                                         <summary>car_skidding</summary>
+                                                         <ul>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">tire_squealing</li>
+                                                         </ul>
+                                                      </details>
+                                                   </li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">car_wheel_rolling</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">power_windows_electric windows</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>emergency_vehicle</summary>
+                                                <ul>
+                                                   <li class="dict-item" style="margin-bottom: 10px;">
+                                                      <details>
+                                                         <summary>vehicle_siren_ringing</summary>
+                                                         <ul>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">ambulance_siren_ringing</li>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">fire_truck_siren_ringing</li>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">police_car_siren_ringing</li>
+                                                         </ul>
+                                                      </details>
+                                                   </li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>large vehicle</summary>
+                                                <ul>
+                                                   <li class="dict-item" style="margin-bottom: 10px;">
+                                                      <details>
+                                                         <summary>bus</summary>
+                                                         <ul>
+                                                            <li class="dict-item" style="margin-bottom: 10px;">
+                                                               <details>
+                                                                  <summary>bus_engine</summary>
+                                                                  <ul>
+                                                                     <li style="margin-bottom: 10px; margin-left: 19px;">bus_compressor</li>
+                                                                     <li style="margin-bottom: 10px; margin-left: 19px;">bus_engine_accelerating</li>
+                                                                     <li style="margin-bottom: 10px; margin-left: 19px;">bus_engine_idling</li>
+                                                                  </ul>
+                                                               </details>
+                                                            </li>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">bus_wheel_rolling</li>
+                                                         </ul>
+                                                      </details>
+                                                   </li>
+                                                   <li class="dict-item" style="margin-bottom: 10px;">
+                                                      <details>
+                                                         <summary>truck</summary>
+                                                         <ul>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">air_horn_or_truck_horn</li>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">ice_cream_truck</li>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">reverse_beeper</li>
+                                                            <li class="dict-item" style="margin-bottom: 10px;">
+                                                               <details>
+                                                                  <summary>truck_brake</summary>
+                                                                  <ul>
+                                                                     <li style="margin-bottom: 10px; margin-left: 19px;">air_brake</li>
+                                                                  </ul>
+                                                               </details>
+                                                            </li>
+                                                            <li class="dict-item" style="margin-bottom: 10px;">
+                                                               <details>
+                                                                  <summary>truck_engine</summary>
+                                                                  <ul>
+                                                                     <li style="margin-bottom: 10px; margin-left: 19px;">truck_compressor</li>
+                                                                     <li style="margin-bottom: 10px; margin-left: 19px;">truck_engine_accelerating</li>
+                                                                     <li style="margin-bottom: 10px; margin-left: 19px;">truck_engine_idling</li>
+                                                                  </ul>
+                                                               </details>
+                                                            </li>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">truck_wheel_rolling</li>
+                                                         </ul>
+                                                      </details>
+                                                   </li>
+                                                   <li class="dict-item" style="margin-bottom: 10px;">
+                                                      <details>
+                                                         <summary>vehicle_compressor</summary>
+                                                         <ul>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">bus_compressor</li>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">truck_compressor</li>
+                                                         </ul>
+                                                      </details>
+                                                   </li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>motorcycle</summary>
+                                                <ul>
+                                                   <li class="dict-item" style="margin-bottom: 10px;">
+                                                      <details>
+                                                         <summary>motorcycle_engine</summary>
+                                                         <ul>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">motorcycle_engine_accelerating</li>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">motorcycle_engine_idling</li>
+                                                         </ul>
+                                                      </details>
+                                                   </li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">motorcycle_wheel_rolling</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>vehicle_engine</summary>
+                                                <ul>
+                                                   <li class="dict-item" style="margin-bottom: 10px;">
+                                                      <details>
+                                                         <summary>bus_engine</summary>
+                                                         <ul>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">bus_compressor</li>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">bus_engine_accelerating</li>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">bus_engine_idling</li>
+                                                         </ul>
+                                                      </details>
+                                                   </li>
+                                                   <li class="dict-item" style="margin-bottom: 10px;">
+                                                      <details>
+                                                         <summary>car_engine</summary>
+                                                         <ul>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">car_engine_accelerating</li>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">car_engine_idling</li>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">car_passing_by</li>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">race_car</li>
+                                                         </ul>
+                                                      </details>
+                                                   </li>
+                                                   <li class="dict-item" style="margin-bottom: 10px;">
+                                                      <details>
+                                                         <summary>engine_accelerating</summary>
+                                                         <ul>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">bus_engine_accelerating</li>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">car_engine_accelerating</li>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">motorcycle_engine_accelerating</li>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">truck_engine_accelerating</li>
+                                                         </ul>
+                                                      </details>
+                                                   </li>
+                                                   <li class="dict-item" style="margin-bottom: 10px;">
+                                                      <details>
+                                                         <summary>motorcycle_engine</summary>
+                                                         <ul>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">motorcycle_engine_accelerating</li>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">motorcycle_engine_idling</li>
+                                                         </ul>
+                                                      </details>
+                                                   </li>
+                                                   <li class="dict-item" style="margin-bottom: 10px;">
+                                                      <details>
+                                                         <summary>truck_engine</summary>
+                                                         <ul>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">truck_compressor</li>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">truck_engine_accelerating</li>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">truck_engine_idling</li>
+                                                         </ul>
+                                                      </details>
+                                                   </li>
+                                                   <li class="dict-item" style="margin-bottom: 10px;">
+                                                      <details>
+                                                         <summary>vehicle_compressor</summary>
+                                                         <ul>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">bus_compressor</li>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">truck_compressor</li>
+                                                         </ul>
+                                                      </details>
+                                                   </li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>vehicle_horn</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">air_horn_or_truck_horn</li>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">car_horn</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>vehicle_passing_by</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">car_passing_by</li>
+                                                   <li class="dict-item" style="margin-bottom: 10px;">
+                                                      <details>
+                                                         <summary>wheel_rolling</summary>
+                                                         <ul>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">bus_wheel_rolling</li>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">car_wheel_rolling</li>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">motorcycle_wheel_rolling</li>
+                                                            <li style="margin-bottom: 10px; margin-left: 19px;">truck_wheel_rolling</li>
+                                                         </ul>
+                                                      </details>
+                                                   </li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>water_vehicle</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">Rowboat_canoe_kayak</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">motorboat_speedboat</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">sailboat_sailing_ship</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">ship</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>water_domestic</summary>
+                              <ul>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">bathtub_(filling_or_washing)</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">sink_(filling_or_washing)</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">toilet_flush</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">water_tap_or_faucet</li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li style="margin-bottom: 10px; margin-left: 19px;">windscreen_wiper</li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>wood</summary>
+                              <ul>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>chopping_wood</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">wood_splinter</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                              </ul>
+                           </details>
+                        </li>
+                     </ul>
+                  </details>
+               </li>
+            </ul>
+            <ul style="font-size: 1.1em;">
+               <li class="dict-item" style="margin-bottom: 10px;">
+                  <details>
+                     <summary>Source-ambiguous sounds</summary>
+                     <ul>
+                        <li style="margin-bottom: 10px; margin-left: 19px;">cleaning</li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>deformable_shell</summary>
+                              <ul>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">crumbling_or_crinkling</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">crushing</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">tearing</li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>generic_impact_sounds</summary>
+                              <ul>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">bang</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">bouncing</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">breaking</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">flap</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">knock</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">slap_or_smack</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">smash_or_crash</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">tapping</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>thumb_or_thud</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">clunk</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">thunk</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">whack_or_thwack</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">whip</li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li style="margin-bottom: 10px; margin-left: 19px;">object_fall</li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>onomatopoeia</summary>
+                              <ul>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">boing</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>brief_tone</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">bleep_bleep</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">clang</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">ding</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">ping</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">screech</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">squeal</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">clatter</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>clicking</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">clickety-clack</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">clip-clop</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">crack</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">crackle</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">creak</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">crunch</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">fizz</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">hiss</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">hum</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">jingle_tinkle</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">plop</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">puff</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">rattle</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">rumble</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">rustle</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">sizzle</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">snap</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">squeak</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">squish</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">sweeping</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">whir</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">whoosh_swoosh_swish</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">zing</li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>other_sourceless</summary>
+                              <ul>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">pulse</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>sine_wave</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">chirp_tone</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">harmonic</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">sound_effect</li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li style="margin-bottom: 10px; margin-left: 19px;">plastic_crinkling</li>
+                        <li style="margin-bottom: 10px; margin-left: 19px;">silence</li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>surface_contact</summary>
+                              <ul>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">grind</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">roll</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">rub</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">scrape</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">scratch</li>
+                              </ul>
+                           </details>
+                        </li>
+                     </ul>
+                  </details>
+               </li>
+            </ul>
+            <ul style="font-size: 1.1em;">
+               <li class="dict-item" style="margin-bottom: 10px;">
+                  <details>
+                     <summary>Natural sounds</summary>
+                     <ul>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>fire</summary>
+                              <ul>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">crackle</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">wildfire</li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>thunderstorm</summary>
+                              <ul>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">thunder</li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>water_natural</summary>
+                              <ul>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>ocean</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">waves</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">pouring_water</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>rain</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">rain_on_surface</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">raindrop</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">steam</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>water_drop</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">raindrop</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">water_gurgling</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">water_stream</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">waterfall</li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>wind_blowing</summary>
+                              <ul>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">rustling_leaves</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">wind_noise_(microphone)</li>
+                              </ul>
+                           </details>
+                        </li>
+                     </ul>
+                  </details>
+               </li>
+            </ul>
+            <ul style="font-size: 1.1em;">
+               <li class="dict-item" style="margin-bottom: 10px;">
+                  <details>
+                     <summary>Water</summary>
+                     <ul>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>water_domestic</summary>
+                              <ul>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">bathtub_(filling_or_washing)</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">sink_(filling_or_washing)</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">toilet_flush</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">water_tap_or_faucet</li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>water_natural</summary>
+                              <ul>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>ocean</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">waves</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">pouring_water</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>rain</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">rain_on_surface</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">raindrop</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">steam</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>water_drop</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">raindrop</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">water_gurgling</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">water_stream</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">waterfall</li>
+                              </ul>
+                           </details>
+                        </li>
+                     </ul>
+                  </details>
+               </li>
+            </ul>
+            <ul style="font-size: 1.1em;">
+               <li class="dict-item" style="margin-bottom: 10px;">
+                  <details>
+                     <summary>Channel, environment and background</summary>
+                     <ul>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>acoustic_environment</summary>
+                              <ul>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">echo</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>indoor_environment</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">inside_public_space</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">large_room_or_hall</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">small_room</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>outdoor_environment</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">outdoor_rural_or_natural</li>
+                                          <li class="dict-item" style="margin-bottom: 10px;">
+                                             <details>
+                                                <summary>outdoor_urban_or_manmade</summary>
+                                                <ul>
+                                                   <li style="margin-bottom: 10px; margin-left: 19px;">traffic_noise</li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">reverberation</li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>noise</summary>
+                              <ul>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>background_noise</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">distortion</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">environmental_noise</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">mains_hum</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">sidetone</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">static_noise</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">tape_hiss</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">cacophony</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">speech_babbling</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">throbbing</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">vibration</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>white_or_pink_noise</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">pink_noise</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">white_noise</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                              </ul>
+                           </details>
+                        </li>
+                        <li class="dict-item" style="margin-bottom: 10px;">
+                           <details>
+                              <summary>sound_reproduction</summary>
+                              <ul>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">gramophone_record</li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">radio</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>recording</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">field_recording</li>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">studio_recording</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                                 <li style="margin-bottom: 10px; margin-left: 19px;">television</li>
+                                 <li class="dict-item" style="margin-bottom: 10px;">
+                                    <details>
+                                       <summary>video_game/tv</summary>
+                                       <ul>
+                                          <li style="margin-bottom: 10px; margin-left: 19px;">video_game</li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                              </ul>
+                           </details>
+                        </li>
+                     </ul>
+                  </details>
+               </li>
+            </ul>
+            <ul style="font-size: 1.1em;">
+               <li style="margin-bottom: 10px; margin-left: 19px;">Other</li>
+            </ul>
+         </section>
+         <section class="section">
+            <div class="container">
+               <h2 class="section-title">Code Examples</h2>
+               <div class="useful-links">
+                  <ul>
+                     <li><a href="../docs/start_here.html">SALT basic tutorial</a></li>
+                     <li><a href="../docs/label_aggregation.html">Label aggregation tutorial</a></li>
+                     <li><a href="../docs/esc50_exploration.html">ESC-50 exploration tutorial</a></li>
+                     <!-- Add more links as needed -->
+                  </ul>
+               </div>
+            </div>
+         </section>
+         <section class="section">
+         <div class="container">
+            <h2 class="section-title">Related Links</h2>
+            <div class="useful-links">
+               <ul>
+                  <li><a href="https://github.com/tpt-adasp/salt">GitHub Repository</a></li>
+                  <li><a href="https://example.com/publication">Publication</a></li>
+                  <li>
+                     <a href="https://adasp.telecom-paris.fr/">ADASP</a>
+                     <!-- Add more links as needed -->
+               </ul>
+            </div>
+         </div>
+      </main>
+      <!-- Modal -->
+      <div id="myModal" class="modal" onclick="closeModal(event)">
+         <span class="close">&times;</span>
+         <img class="modal-content" id="img01">
+         <div id="caption" class="modal-caption"></div>
+      </div>
+      <footer class="footer">
+         <div class="container">
+            <p>&copy; 2024 ADASP</p>
+         </div>
+      </footer>
+      <script>
+         // JavaScript to open modal
+         function openModal(img) {
+             var modal = document.getElementById("myModal");
+             var modalImg = document.getElementById("img01");
+             var captionText = document.getElementById("caption");
+             modal.style.display = "block";
+             modalImg.src = img.src;
+             captionText.innerHTML = img.nextElementSibling.innerHTML;
+         }
+         
+         // JavaScript to close modal
+         function closeModal(event) {
+             var modal = document.getElementById("myModal");
+             var modalImg = document.getElementById("img01");
+             if (event.target === modal) {
+                 modal.style.display = "none";
+             }
+         }
+      </script>
+   </body>
+</html>
