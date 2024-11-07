@@ -28,7 +28,8 @@ __all__ = [
   'Mats',
   'Nonspeech7k',
   'AnimalSound',
-  'Nigens'
+  'Nigens',
+  'VggSound'
 ]
 
 def get_non_subset_datasets_info():
@@ -72,9 +73,6 @@ def get_mapped_dataset():
 
   return [cls().name for cls in dataset_classes.values()]
 
-
-
-
 class DatasetInformer():
   """Abstract class
   """
@@ -114,7 +112,7 @@ class Audioset(DatasetInformer):
   def __init__(self) -> None:
     super().__init__(
       name='AudioSet',
-      mapping_id='AudioSet',
+      mapping_id='Audioset',
       url='https://research.google.com/audioset/',
       subset_of=None,
       description=('2,084,320 human-labeled 10-second sound clips drawn'
@@ -127,7 +125,7 @@ class AudiosetStrong(DatasetInformer):
   def __init__(self) -> None:
     super().__init__(
       name='AudioSet strong',
-      mapping_id='AudioSet_strong',
+      mapping_id='AudiosetStrong',
       url='https://research.google.com/audioset/download_strong.html',
       subset_of=Audioset(),
       description=None,
@@ -139,7 +137,7 @@ class Freesound50k(DatasetInformer):
   def __init__(self) -> None:
     super().__init__(
       name='FreeSound 50k',
-      mapping_id='Fsd50k',
+      mapping_id='Freesound50k',
       url='https://annotator.freesound.org/fsd/release/FSD50K/',
       subset_of=None,
       description='Strong annoatation of AudioSet.',
@@ -151,7 +149,7 @@ class Esc50(DatasetInformer):
   def __init__(self) -> None:
     super().__init__(
       name='ESC-50',
-      mapping_id='ESC50',
+      mapping_id='Esc50',
       url='https://github.com/karolpiczak/ESC-50/',
       subset_of=None,
       description='Labeled collection of 2000 environmental audio recordings.',
@@ -176,7 +174,7 @@ class MaestroReal(DatasetInformer):
   def __init__(self) -> None:
     super().__init__(
       name='MAESTRO Real - Multi-Annotator Estimated Strong Labels',
-      mapping_id='MAESTROreal',
+      mapping_id='MaestroReal',
       url=(
         'https://researchportal.tuni.fi/en/datasets/'
         'maestro-real-multi-annotator-estimated-strong-labels'),
@@ -211,7 +209,7 @@ class MavdTraffic(DatasetInformer):
   def __init__(self) -> None:
     super().__init__(
       name='MAVD-traffic',
-      mapping_id='MAVDtraffic',
+      mapping_id='MavdTraffic',
       url='https://github.com/pzinemanas/MAVD-traffic',
       subset_of=None,
       description=('ban noise monitoring in Montevideo city, Uruguay'),
@@ -223,7 +221,7 @@ class IdmtTraffic(DatasetInformer):
   def __init__(self) -> None:
     super().__init__(
       name='IDMT-traffic',
-      mapping_id='IDMTtraffic',
+      mapping_id='IdmtTraffic',
       url='https://www.idmt.fraunhofer.de/en/publications/datasets/traffic.html',
       subset_of=None,
       description=('17,506 2-second long stereo audio excerpts of recorded '
@@ -237,7 +235,7 @@ class UrbanSound8k(DatasetInformer):
   def __init__(self) -> None:
     super().__init__(
       name='UrbanSound8k',
-      mapping_id='UrbanSound8K',
+      mapping_id='UrbanSound8k',
       url='https://urbansounddataset.weebly.com/urbansound8k.html',
       subset_of=None,
       description=('8732 labeled sound excerpts (<=4s) of urban sounds '
@@ -250,7 +248,7 @@ class TutSoundEvents2016(DatasetInformer):
   def __init__(self) -> None:
     super().__init__(
       name='TUT Sound Events 2016',
-      mapping_id='TUTSoundEvents2016',
+      mapping_id='TutSoundEvents2016',
       url='https://zenodo.org/records/45759',
       subset_of=None,
       description=('TUT Sound events 2016, development dataset consists of '
@@ -264,7 +262,7 @@ class TutSoundEvents2017(DatasetInformer):
   def __init__(self) -> None:
     super().__init__(
       name='TUT Sound Events 2017',
-      mapping_id='TUTSoundEvents2017',
+      mapping_id='TutSoundEvents2017',
       url='https://zenodo.org/records/400516',
       subset_of=None,
       description=('TUT Sound events 2017, development dataset consists of ',
@@ -277,7 +275,7 @@ class MaestroSynthetic(DatasetInformer):
   def __init__(self) -> None:
     super().__init__(
       name='MAESTRO Synthetic – Multiple Annotator Estimated STROng labels',
-      mapping_id='MAESTROsynthetic',
+      mapping_id='MaestroSynthetic',
       url='https://research.tuni.fi/machinelistening/datasets/',
       subset_of=UrbanSound8k(),
       description=('20 synthetic audio files created using Scaper, '
@@ -290,7 +288,7 @@ class Sonyc(DatasetInformer):
   def __init__(self) -> None:
     super().__init__(
       name='SONY-UST',
-      mapping_id='SONYC',
+      mapping_id='Sonyc',
       url='https://zenodo.org/records/3966543',
       subset_of=None,
       description=('2.5 hours of stereo audio recordings of 4718 vehicle '
@@ -317,7 +315,7 @@ class TauSpatialSoundEvents2020(DatasetInformer):
   def __init__(self) -> None:
     super().__init__(
       name='TAU NIGENS Spatial Sound Events 2020',
-      mapping_id='TAUNIGENSSpatialSoundEvents2020',
+      mapping_id='TauSpatialSoundEvents2020',
       url='https://paperswithcode.com/dataset/tau-nigens-spatial-sound-events-2020',
       subset_of=Nigens(),
       description='Spatil sound-scene recordings',
@@ -329,7 +327,7 @@ class TutRareSoundEvents(DatasetInformer):
   def __init__(self) -> None:
     super().__init__(
       name='TUT Rare Sound Events 2017',
-      mapping_id='TUTRareSoundEvents',
+      mapping_id='TutRareSoundEvents',
       url='https://zenodo.org/records/401395',
       subset_of=None,
       description=(
@@ -344,7 +342,7 @@ class ChimeHome(DatasetInformer):
   def __init__(self) -> None:
     super().__init__(
       name='CHiME-Home',
-      mapping_id='CHiMEHome',
+      mapping_id='ChimeHome',
       url='https://paperswithcode.com/dataset/chime-home',
       subset_of=None,
       description='6.8 hours of domestic environment audio recordings',
@@ -356,7 +354,7 @@ class Realised(DatasetInformer):
   def __init__(self) -> None:
     super().__init__(
       name='ReaLISED: Real-Life Indoor Sound Event Dataset',
-      mapping_id='ReaLISED',
+      mapping_id='Realised',
       url='https://www.mdpi.com/2079-9292/11/12/1811',
       subset_of=None,
       description='Real labeled indoor audio event recordings.',
@@ -368,7 +366,7 @@ class DesedReal(DatasetInformer):
   def __init__(self) -> None:
     super().__init__(
       name='DESED',
-      mapping_id='DESEDReal',
+      mapping_id='DesedReal',
       url='https://project.inria.fr/desed/',
       subset_of=Audioset(),
       description=('Dataset designed to recognize sound event classes in '
@@ -407,7 +405,7 @@ class Mats(DatasetInformer):
   def __init__(self) -> None:
     super().__init__(
       name='MATS – Multi-Annotator Tagged Soundscapes',
-      mapping_id='MATS',
+      mapping_id='Mats',
       url='https://research.tuni.fi/machinelistening/datasets/',
       subset_of=None,
       description=('Strong annotations for 3930 audio files of ',
@@ -448,5 +446,18 @@ class Nigens(DatasetInformer):
       subset_of=None,
       description=('1017 wav files of various lengths (between 1s and 5mins),',
                    ' in total comprising 4h:46m of sound material'),
+      source_audio=None
+    )
+
+class VggSound(DatasetInformer):
+  def __init__(self) -> None:
+    super().__init__(
+      name='Vgg-Sound',
+      mapping_id='VggSound',
+      url='https://research.google.com/audioset/',
+      subset_of=None,
+      description=('VGG-Sound is an audio-visual correspondent dataset '
+                   'consisting of short clips of audio sounds, extracted '
+                   'from videos uploaded to YouTube'),
       source_audio=None
     )

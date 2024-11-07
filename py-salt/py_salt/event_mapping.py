@@ -34,44 +34,6 @@ class EventExplorer(MappingExplorer):
     super().__init__(map_md_file_path, roots_md_file_path, std_col)
 
 
-  def add_mapping(self,
-                  label_to_map: str,
-                  dataset: str,
-                  map_to: str,
-                  action=None,
-                  activity=None):
-    if map_to not in self.map_df['standard_event']:
-      raise ValueError(f'Label "{map_to}" not present in the taxonomy')
-
-    if action is None:
-      action=''
-    else:
-      if action not in self.map_df['standard_action']:
-        raise ValueError(f'Label "{action}" not present in the taxonomy')
-
-    if activity is None:
-      activity=''
-    else:
-      if activity not in self.map_df['standard_activity']:
-        raise ValueError(f'Label "{activity}" not present in the taxonomy')
-
-    map_to = list({lbl for path in self.get_paths_to_label(map_to)
-                       for lbl in path})
-
-    for std_label in map_to:
-      index = self.map_df[self.map_df[self._std_col] == std_label].index[-1]
-      new_row = pd.DataFrame({
-        'standard_event': std_label,
-        'dataset_label': label_to_map,
-        'standard_action': action,
-        'standard_activity': activity,
-        'dataset': dataset
-      }, index=index)
-
-      # Insert the new row at the specified index
-      self.map_df = pd.concat([self.map_df.iloc[:index+1], new_row,
-                               self.map_df.iloc[index+1:]]).reset_index(drop=True)
-
   def _generate_tree_graph(self, dict_tree=None, parent=None, graph=None):
     """Generates a tree graph from the provided dictionary tree.
 
@@ -342,4 +304,3 @@ class EventExplorer(MappingExplorer):
       print('save')
       plt.savefig(save_fig)
     plt.show()
-
